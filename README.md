@@ -13,7 +13,9 @@ This is the official pytorch implementation of the paper: **Conversational Image
 
 ### Requirements
 
-Pending.
+```bash
+pip install -r requirements.txt
+```
 
 ### To Reproduce the Results
 
