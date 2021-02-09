@@ -11,8 +11,46 @@ This is the official pytorch implementation of the paper: **Conversational Image
 
 
 
-### State
+### Requirements
 
-We are cleaning the code and dataset for publishing.
+Pending.
+
+### To Reproduce the Results
+
+#### Train
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python main.py train_dgl
+```
+The hyper-parameters can be found in constants.py. Here are some details:
+```python
+DISABLE_STYLETIPS = False  # If `true`, the `style tips` knowledge is removed.
+DISABLE_ATTRIBUTE = False  # If `true`, the `attribute` knowledge is removed.
+DISABLE_CELEBRITY = False  # If `true`, the `celebrity` knowledge is removed.
+IMAGE_ONLY = False  # If `true`, all forms of knowledge will be removed.
+
+# Ablation study
+KNOWLEDGE_TYPE = 'bi_g_wo_img'  # LARCH w/o vision-aware knowledge.
+KNOWLEDGE_TYPE = 'bi_g_wo_que'  # LARCH w/o query-aware knowledge.
+```
+
+To train the model employing the multimodal hierarchical encoder (MHRED) as query encoder, use the following command:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python main.py train_text
+```
+
+#### Test
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python main.py eval_graph
+```
+
+To evaluate the performance of LARCH w/o GRAPH, using the following command:
+```bash
+CUDA_VISIBLE_DEVICES=0 python main.py eval_text
+```
+
+You should change the path of saved checkpoint in evaluator to the path of the model to be evaluated.
 
 Any question please contact: jiaofangkai@hotmail.com
