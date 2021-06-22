@@ -1,5 +1,6 @@
 import torch
-from torch import nn
+from torch import nn, Tensor
+from torch.nn import Linear
 
 ACT_FN = {
     "gelu": torch.nn.GELU,
@@ -30,3 +31,9 @@ class FuseLayer(nn.Module):
         g = torch.sigmoid(self.g(z))
         res = g * f + (1 - g) * x
         return res
+
+
+def weighted_average(w: Linear, x: Tensor, mask: Tensor):
+    scores = w(x).squeeze(-1) + (1 - mask) * -10000.0
+    alpha = torch.softmax(scores, dim=-1)
+    ...

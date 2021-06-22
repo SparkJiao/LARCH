@@ -5,9 +5,10 @@ import torch
 SEED = 0
 
 DATA_DIR = Path('/home/share/zhanghaoyu/mkdset')
-DUMP_DIR = Path('/home/dell/jiaofangkai/dump_MM2020')
+# DUMP_DIR = Path('/home/dell/jiaofangkai/dump_MM2020')
+DUMP_DIR = Path('/home/share/jiaofangkai/larch-experiments/dump_MM2020')
 
-TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS = 200, 16
+TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS = 200, 24
 VALID_BATCH_SIZE, VALID_DATA_LOAD_WORKERS = 100, 4
 TEST_BATCH_SIZE, TEST_DATA_LOAD_WORKERS = 20, 12
 
@@ -71,7 +72,8 @@ GAT_FEAT_DROPOUT = 0.1
 GAT_ATT_DROPOUT = 0.1
 IF_FULL_CONNECT = True
 
-QUERY_TYPE = 'expand'
+# QUERY_TYPE = 'expand'
+QUERY_TYPE = 'weighted'
 
 """ Knowledge Disable """
 

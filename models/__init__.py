@@ -1,5 +1,6 @@
 from .query_encoder_dgl import QueryEncoder
 from .query_encoder_dgl_ex import QueryEncoderExpand
+from .query_encoder_dgl_ex_w import QueryEncoderExpand as QueryEncoderExpandWeighted
 
 from .knowledge_encoder_bidirectional import KnowledgeEncoderBidirectional
 from .knowledge_encoder_bid_gate import KnowledgeEncoderBidirectionalGate

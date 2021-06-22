@@ -20,7 +20,8 @@ from utils import collate_fn_dgl
 
 QueryEncoder = {
     'simple': models.QueryEncoder,
-    'expand': models.QueryEncoderExpand
+    'expand': models.QueryEncoderExpand,
+    'weighted': models.QueryEncoderExpandWeighted
 }[constants.QUERY_TYPE]
 
 KnowledgeEncoder = {
@@ -62,7 +63,8 @@ class TrainerDGL:
                                             shuffle=True, num_workers=VALID_DATA_LOAD_WORKERS,
                                             collate_fn=collate_fn_dgl)
 
-        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2')
+        # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2')
+        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_q_weighted_dgl_bid_gate1.0')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_sty')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_img_only')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_att')
@@ -115,7 +117,8 @@ class TrainerDGL:
         else:
             raise RuntimeError()
 
-        model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2'
+        # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2'
+        model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_sty'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_img_only'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_att'
