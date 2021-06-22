@@ -21,14 +21,16 @@ from utils import collate_fn_dgl
 QueryEncoder = {
     'simple': models.QueryEncoder,
     'expand': models.QueryEncoderExpand,
-    'weighted': models.QueryEncoderExpandWeighted
+    'weighted': models.QueryEncoderExpandWeighted,
+    'ex_vgg': models.QueryEncoderExpandVGG
 }[constants.QUERY_TYPE]
 
 KnowledgeEncoder = {
     'bi': models.KnowledgeEncoderBidirectional,
     'bi_g': models.KnowledgeEncoderBidirectionalGate,
     'bi_g_wo_img': models.KnowledgeEncoderBidirectionalGateWoImg,
-    'bi_g_wo_que': models.KnowledgeEncoderBidirectionalGateWoQuery
+    'bi_g_wo_que': models.KnowledgeEncoderBidirectionalGateWoQuery,
+    'bi_g_vgg': models.KnowledgeEncoderBidirectionalGateVGG
 }[constants.KNOWLEDGE_TYPE]
 
 print(f'Query encoder type: {QueryEncoder}')
@@ -64,7 +66,8 @@ class TrainerDGL:
                                             collate_fn=collate_fn_dgl)
 
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2')
-        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_q_weighted_dgl_bid_gate1.0')
+        # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_q_weighted_dgl_bid_gate1.0')
+        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_vgg')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_sty')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_img_only')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_att')
@@ -118,7 +121,8 @@ class TrainerDGL:
             raise RuntimeError()
 
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2'
-        model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
+        model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_vgg'
+        # model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_sty'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_img_only'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_att'

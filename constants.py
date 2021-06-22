@@ -8,7 +8,7 @@ DATA_DIR = Path('/home/share/zhanghaoyu/mkdset')
 # DUMP_DIR = Path('/home/dell/jiaofangkai/dump_MM2020')
 DUMP_DIR = Path('/home/share/jiaofangkai/larch-experiments/dump_MM2020')
 
-TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS = 200, 24
+TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS = 100, 24
 VALID_BATCH_SIZE, VALID_DATA_LOAD_WORKERS = 100, 4
 TEST_BATCH_SIZE, TEST_DATA_LOAD_WORKERS = 20, 12
 
@@ -73,7 +73,8 @@ GAT_ATT_DROPOUT = 0.1
 IF_FULL_CONNECT = True
 
 # QUERY_TYPE = 'expand'
-QUERY_TYPE = 'weighted'
+# QUERY_TYPE = 'weighted'
+QUERY_TYPE = 'ex_vgg'
 
 """ Knowledge Disable """
 
@@ -89,7 +90,8 @@ WEIGHT_DECAY = 0.0
 EMB_ADD_LAYER_NORM = False
 
 # ------------------ bidirectional gate 1.2
-KNOWLEDGE_TYPE = 'bi_g'
+# KNOWLEDGE_TYPE = 'bi_g'
+KNOWLEDGE_TYPE = 'bi_g_vgg'
 BID_DROPOUT = 0.1
 BID_ATTN_DROPOUT = 0.1
 LEARNING_RATE = 1e-5

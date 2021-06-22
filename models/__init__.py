@@ -1,8 +1,10 @@
 from .query_encoder_dgl import QueryEncoder
 from .query_encoder_dgl_ex import QueryEncoderExpand
 from .query_encoder_dgl_ex_w import QueryEncoderExpand as QueryEncoderExpandWeighted
+from .query_encoder_dgl_ex_vgg import QueryEncoderExpandVGG
 
 from .knowledge_encoder_bidirectional import KnowledgeEncoderBidirectional
 from .knowledge_encoder_bid_gate import KnowledgeEncoderBidirectionalGate
 from .knowledge_encoder_bid_gate_wo_image import KnowledgeEncoderBidirectionalGateWoImg
 from .knowledge_encoder_bid_gate_wo_query import KnowledgeEncoderBidirectionalGateWoQuery
+from .knowledge_encoder_bid_gate_vgg import KnowledgeEncoderBidirectionalGateVGG
