@@ -31,9 +31,3 @@ class FuseLayer(nn.Module):
         g = torch.sigmoid(self.g(z))
         res = g * f + (1 - g) * x
         return res
-
-
-def weighted_average(w: Linear, x: Tensor, mask: Tensor):
-    scores = w(x).squeeze(-1) + (1 - mask) * -10000.0
-    alpha = torch.softmax(scores, dim=-1)
-    ...
