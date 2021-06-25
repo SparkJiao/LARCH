@@ -11,7 +11,7 @@ from torch.utils.data import DataLoader
 import constants
 import models
 from constants import TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS, LEARNING_RATE, NUM_EPOCH, DUMP_DIR, \
-    PRINT_FREQ, VALID_FREQ, DEVICE, VALID_BATCH, VALID_BATCH_SIZE, VALID_DATA_LOAD_WORKERS
+    PRINT_FREQ, VALID_FREQ, DEVICE, VALID_BATCH, VALID_BATCH_SIZE, VALID_DATA_LOAD_WORKERS, GRADIENT_ACCUMULATION_STEPS
 from datasets.train_dataset_dgl import TrainDatasetDGL
 from knowledge_embed import KnowledgeData
 from loss import calc_loss_
@@ -66,8 +66,8 @@ class TrainerDGL:
                                             collate_fn=collate_fn_dgl)
 
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2')
-        # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_q_weighted_dgl_bid_gate1.0')
-        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_vgg')
+        self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_q_weighted_dgl_bid_gate1.0')
+        # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_vgg')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_sty')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_img_only')
         # self.writer = SummaryWriter(DUMP_DIR / 'tensorboard_dgl_bid_gate1.2_dis_att')
@@ -121,8 +121,8 @@ class TrainerDGL:
             raise RuntimeError()
 
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2'
-        model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_vgg'
-        # model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
+        # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_vgg'
+        model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_sty'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_img_only'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_dis_att'
@@ -144,17 +144,19 @@ class TrainerDGL:
             epoch_id = state['epoch_id']
             min_valid_loss = state['min_valid_loss']
             pre_tot_steps = state['total_steps']
-            tot_steps = len(self.train_data_loader) * epoch_id
+            tot_steps = (len(self.train_data_loader) // GRADIENT_ACCUMULATION_STEPS) * epoch_id
 
         print('Start training...')
         sum_loss = 0
+        optimizer.zero_grad()
         for epoch_id in range(epoch_id, NUM_EPOCH):
             for batch_id, data in enumerate(self.train_data_loader):
                 if tot_steps <= pre_tot_steps:
-                    tot_steps += 1
+                    if (batch_id + 1) % GRADIENT_ACCUMULATION_STEPS == 0:
+                        tot_steps += 1
                     continue
 
-                optimizer.zero_grad()
+                # optimizer.zero_grad()
 
                 graph_inputs, pos_products, neg_products = data
                 pos_images, pos_styletips, pos_celebrity, pos_attributes = pos_products
@@ -191,9 +193,11 @@ class TrainerDGL:
                 sum_loss += loss.detach()
 
                 loss.backward()
-                optimizer.step()
 
-                tot_steps += 1
+                if (batch_id + 1) % GRADIENT_ACCUMULATION_STEPS == 0:
+                    optimizer.step()
+                    optimizer.zero_grad()
+                    tot_steps += 1
                 # Print loss every `TrainConfig.print_freq` batches.
                 if (batch_id + 1) % PRINT_FREQ == 0:
                     cur_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
