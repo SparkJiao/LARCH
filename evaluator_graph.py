@@ -18,19 +18,17 @@ from utils import collate_fn_eval
 
 QueryEncoder = {
     'simple': models.QueryEncoder,
-    'expand': models.QueryEncoderExpand
+    'expand': models.QueryEncoderExpand,
+    'weighted': models.QueryEncoderExpandWeighted,
+    'ex_vgg': models.QueryEncoderExpandVGG
 }[constants.QUERY_TYPE]
 
 KnowledgeEncoder = {
-    'simple': models.KnowledgeEncoder,
-    'reverse': models.KnowledgeEncoderReverse,
-    'fuse': models.KnowledgeEncoderReverseFuse,
-    'sep': models.KnowledgeEncoderReverseSeparate,
-    'act': models.KnowledgeEncoderReverseActivate,
     'bi': models.KnowledgeEncoderBidirectional,
     'bi_g': models.KnowledgeEncoderBidirectionalGate,
     'bi_g_wo_img': models.KnowledgeEncoderBidirectionalGateWoImg,
-    'bi_g_wo_que': models.KnowledgeEncoderBidirectionalGateWoQuery
+    'bi_g_wo_que': models.KnowledgeEncoderBidirectionalGateWoQuery,
+    'bi_g_vgg': models.KnowledgeEncoderBidirectionalGateVGG
 }[constants.KNOWLEDGE_TYPE]
 
 print(f'Query encoder type: {QueryEncoder}')
@@ -103,7 +101,9 @@ class Evaluator:
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_wo_que'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_4gat'
         # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_3gat'
-        model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_6gat'
+        # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_6gat'
+        # model_file = DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_vgg'
+        model_file = DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0'
         print(f'Load model from {model_file}')
         state = torch.load(model_file)
         self.query_encoder.load_state_dict(state['query_encoder'])
@@ -152,7 +152,9 @@ class Evaluator:
         # log_writer = open(DUMP_DIR / 'check_points_dgl_bid_gate1.2_wo_que_full_neg_img1000.log', 'w')
         # log_writer = open(DUMP_DIR / 'check_points_dgl_bid_gate1.2_4gat_full_neg_img1000.log', 'w')
         # log_writer = open(DUMP_DIR / 'check_points_dgl_bid_gate1.2_3gat_full_neg_img1000.log', 'w')
-        log_writer = open(DUMP_DIR / 'check_points_dgl_bid_gate1.2_6gat_full_neg_img1000.log', 'w')
+        # log_writer = open(DUMP_DIR / 'check_points_dgl_bid_gate1.2_6gat_full_neg_img1000.log', 'w')
+        # log_writer = open(DUMP_DIR / 'check_points.tar_dgl_bid_gate1.2_vgg_full_neg_img1000.log', 'w')
+        log_writer = open(DUMP_DIR / 'check_points.tar_q_weighted_dgl_bid_gate1.0_full_neg_img_1000.log', 'w')
         print(f'Load model from {model_file}', file=log_writer, flush=True)
 
         with torch.no_grad():

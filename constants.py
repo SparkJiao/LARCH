@@ -11,6 +11,7 @@ DUMP_DIR = Path('/home/share/jiaofangkai/larch-experiments/dump_MM2020')
 TRAIN_BATCH_SIZE, TRAIN_DATA_LOAD_WORKERS = 100, 24
 VALID_BATCH_SIZE, VALID_DATA_LOAD_WORKERS = 100, 4
 TEST_BATCH_SIZE, TEST_DATA_LOAD_WORKERS = 20, 12
+GRADIENT_ACCUMULATION_STEPS = 2
 
 CONTEXT_SIZE = 2
 WORD_CUT_OFF = 4
@@ -73,8 +74,8 @@ GAT_ATT_DROPOUT = 0.1
 IF_FULL_CONNECT = True
 
 # QUERY_TYPE = 'expand'
-# QUERY_TYPE = 'weighted'
-QUERY_TYPE = 'ex_vgg'
+QUERY_TYPE = 'weighted'
+# QUERY_TYPE = 'ex_vgg'
 
 """ Knowledge Disable """
 
@@ -90,8 +91,8 @@ WEIGHT_DECAY = 0.0
 EMB_ADD_LAYER_NORM = False
 
 # ------------------ bidirectional gate 1.2
-# KNOWLEDGE_TYPE = 'bi_g'
-KNOWLEDGE_TYPE = 'bi_g_vgg'
+KNOWLEDGE_TYPE = 'bi_g'
+# KNOWLEDGE_TYPE = 'bi_g_vgg'
 BID_DROPOUT = 0.1
 BID_ATTN_DROPOUT = 0.1
 LEARNING_RATE = 1e-5
