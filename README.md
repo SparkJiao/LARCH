@@ -1,6 +1,6 @@
 # LARCH
 
-This is the official pytorch implementation of the paper: **Conversational Image Search.** Liqiang Nie, Fangkai Jiao, Wenjie Wang, Yinglong Wang, and Qi Tian. *Under review*.
+This is the official pytorch implementation of the paper: **Conversational Image Search.** Liqiang Nie, Fangkai Jiao, Wenjie Wang, Yinglong Wang, and Qi Tian. *TIP 2021*.
 
 ![Our model LARCH](larch_framework.jpg)
 
