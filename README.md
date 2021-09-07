@@ -86,3 +86,19 @@ CUDA_VISIBLE_DEVICES=0 python main.py eval_text
 You should change the path of saved checkpoint in evaluator to the path of the model to be evaluated.
 
 Any question please contact: jiaofangkai@hotmail.com
+
+### Citation
+
+If this work is helpful, please cite it:
+```
+@ARTICLE{conv-img-search-nie-2021,
+  author={Nie, Liqiang and Jiao, Fangkai and Wang, Wenjie and Wang, Yinglong and Tian, Qi},
+  journal={IEEE Transactions on Image Processing}, 
+  title={Conversational Image Search}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TIP.2021.3108724}}
+```
+
