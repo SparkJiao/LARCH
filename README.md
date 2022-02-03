@@ -38,10 +38,16 @@ in the conversational image search community.
 ### Dataset MMD 2.0
 
 <!-- [train_2.tar.gz](https://icloud.qd.sdu.edu.cn:7777/link/EEA7E1EE9F2904154911AF9C0DAB8F2D)  -->
-[train.tar.gz](https://icloud.qd.sdu.edu.cn:7777/#/link/80EF7FEE9BF8AF08B514931FC77E51A3)  
-[valid.tar.gz](https://icloud.qd.sdu.edu.cn:7777/link/7FCA2889C1BBAF858C892367BD13BB3D)  
-[test.tar.gz](https://icloud.qd.sdu.edu.cn:7777/link/3001E617009ABF1992409C9438E9966C)  
-[image_id.json](https://icloud.qd.sdu.edu.cn:7777/#/link/5B71D29B9895E93DEA70F60596105C9B)  
+[train_1.tar.gz](https://pan.baidu.com/s/1TZ7qI4HBu8ld7Az_K5J0WQ) (Extraction Code: wl8s)  
+<!-- [train.tar.gz](https://icloud.qd.sdu.edu.cn:7777/#/link/80EF7FEE9BF8AF08B514931FC77E51A3)   -->
+[train_2.tar.gz](https://pan.baidu.com/s/1TyIFnqcMbO50qDEqaa3L8w) (Extraction Code: 324x)  
+<!-- [valid.tar.gz](https://icloud.qd.sdu.edu.cn:7777/link/7FCA2889C1BBAF858C892367BD13BB3D)   -->
+[valid.tar.gz](https://pan.baidu.com/s/19pf-oSPAB0V1pnOAmS2rKw) (Extraction Code: kw5j)  
+<!-- [test.tar.gz](https://icloud.qd.sdu.edu.cn:7777/link/3001E617009ABF1992409C9438E9966C)   -->
+[test.tar.gz](https://pan.baidu.com/s/166ihr9xEf7tibWgv-lyhZQ)  (Extraction Code: h5kr)  
+<!-- [image_id.json](https://icloud.qd.sdu.edu.cn:7777/#/link/5B71D29B9895E93DEA70F60596105C9B)   -->
+[image_id.json](https://pan.baidu.com/s/18VTqKtBeYfNRi8lh1huE3A) (Extraction Code: 7zsp)  
+[url2img.txt](https://pan.baidu.com/s/18xOoeUetATa-ClmRQiCk7A)  (Extraction Code: azdk)  
 
 ### Requirements
 
