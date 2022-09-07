@@ -94,7 +94,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py eval_text
 
 You should change the path of saved checkpoint in evaluator to the path of the model to be evaluated.
 
-Any question please contact: jiaofangkai@hotmail.com
+Any question please contact: jiaofangkai [AT] hotmail [DOT] com
 
 ### Citation
 
